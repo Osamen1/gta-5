@@ -1,6 +1,6 @@
 const k = require('./secretspoops.json');
 global.Eris = require('eris');
-global.client = new Eris.Client(k.alt, { connectionTimeout: 60000 });
+global.client = new Eris.Client(k.token, { connectionTimeout: 60000 });
 global.sql = require('sqlite');
 global.fs = require('fs');
 global.c = require('chalk');
@@ -9,7 +9,7 @@ global.snek = require('snekfetch');
 require('moment-duration-format');
 require('./guild.js')
 
-global.prefix = "(";
+global.prefix = ")";
 global.admins = { "josh":"117728104935456770", "hunter":"228963688910946304", "john":"148958241378926593" };
 global.owner = { "id":"221740788462256138" };
 global.bot = {"id": "305602159741763585", "serverlog":"382001924251320322", "suggestchannel":"382001960984772609", "testingserver":"312667247808217088", "officialserver":"380310916341956610"};
