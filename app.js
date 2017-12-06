@@ -57,9 +57,9 @@ client.on('guildDelete', guild => {
 });
 
 client.on("messageCreate", (message) => {
-  if(!message.content.startsWith(prefix) && !message.content.startsWith(`<@${bot.id}>`)) return;
+  if(!message.content.startsWith(prefix)) return;
   if(message.author == client.user) return;
-  if(message.channel.type == "dm") return;
+  if(!message.channel.guild) return message.channel.createMessage("no, fuck off. go use me in an actual guild.");
 
   let cmd = message.content.slice(prefix.length).toLowerCase().split(' ')[0];
   let args = message.content.split(' ').slice(1);
