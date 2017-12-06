@@ -9,6 +9,10 @@ exports.run = function(message, args) {
           inline: true
         },
         {
+          name: '`forceplay`',
+          value: 'Just the `)play` command, just you get to force people to play if you\'re an admin.'
+        },
+        {
           name: '`stats`',
           value: 'See your statistics from playing Russian Roulette.',
           inline: true

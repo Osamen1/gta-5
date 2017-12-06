@@ -6,10 +6,12 @@ global.fs = require('fs');
 global.c = require('chalk');
 global.moment = require('moment');
 global.snek = require('snekfetch');
+global.perms = require('./functions/permissions.js');
+global.misc = require('./functions/misc.js');
 require('moment-duration-format');
-require('./guild.js')
+require('./guild.js');
 
-global.prefix = ")";
+global.prefix = "(";
 global.admins = { "josh":"117728104935456770", "hunter":"228963688910946304", "john":"148958241378926593" };
 global.owner = { "id":"221740788462256138" };
 global.bot = {"id": "305602159741763585", "serverlog":"382001924251320322", "suggestchannel":"382001960984772609", "testingserver":"312667247808217088", "officialserver":"380310916341956610"};
@@ -26,7 +28,7 @@ process.on('unhandledRejection', (reason, p) => {
 
 client.on("ready", () => {
   console.log(c.blue(`Damn Daniel.\nServer Amount: ${client.guilds.size}`));
-  client.editStatus("dnd", {name: "your screams", type: 2});
+  misc.randomStatus();
   new snek('POST', `https://bots.discord.pw/api/bots/${bot.id}/stats`).set('Authorization', k.bdt).send({ server_count: client.guilds.size }).then(() => { console.log("Sent server amount to bots.discord.pw successfully.") }).catch(e => { if(e) throw e.stack; return; });
   new snek('POST', `https://discordbots.org/api/bots/${bot.id}/stats`).set('Authorization', k.dblt).send({ server_count: client.guilds.size }).then(() => { console.log("Sent server amount to discordbots.org successfully.") }).catch(e => { if(e) throw e.stack; return; });
 });
@@ -55,11 +57,7 @@ client.on('guildDelete', guild => {
 });
 
 client.on("messageCreate", (message) => {
-  if(message.content.includes(`<@${bot.id}> help`)) {
-    message.channel.createMessage("btw, the prefix is `)`. So use `)help`");
-    return;
-  }
-  if(!message.content.startsWith(prefix)) return;
+  if(!message.content.startsWith(prefix) && !message.content.startsWith(`<@${bot.id}>`)) return;
   if(message.author == client.user) return;
   if(message.channel.type == "dm") return;
 
@@ -77,15 +75,8 @@ client.on("messageCreate", (message) => {
   }
 });
 
-function dailyBackup() {
-  client.getDMChannel(owner.id).then(channel => {
-    var t = moment().format("MMM Do YY");
-    var data = fs.readFileSync('stats.sqlite');
-    channel.createMessage({content: "ur mom"}, {file: data, name: `Backup: ${t}.sqlite`});
-  });
-}
-
-setInterval(dailyBackup, 86400000);
+setInterval(misc.randomStatus, 1800000);
+setInterval(misc.dailyBackup, 86400000);
 
 client.connect();
-// John's a little bitch
+// xD I'm killing myself

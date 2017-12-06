@@ -15,8 +15,12 @@ exports.run = function(message, args) {
         },
         {
           name: "Anyway I can help?",
-          value: "Only way you can is to use the `suggest` command, since this trash bot only has so much potential.",
+          value: "Use the `)suggest` command, or contribute to the [GitHub](https://github.com/EdanEA/russian-roulette) and maybe he'll add it.",
           inline: true
+        },
+        {
+          name: "How do I report errors?",
+          value: "You could go to the [Github issues page](https://github.com/EdanEA/russian-roulette/issues), or be a ghetto lil' bitch and send them via the `)suggest` command."
         }
       ],
       footer: {
