@@ -10,7 +10,7 @@ It's here (fancy widget):
 
 
 
-![discordbots widget](https://discordbots.org/api/widget/305602159741763585.png)
+[![discordbots widget](https://discordbots.org/api/widget/305602159741763585.png)(https://discordbots.org/bot/305602159741763585)]
 
 [And here](https://bots.discord.pw/bots/305602159741763585)
 
