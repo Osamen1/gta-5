@@ -2,7 +2,7 @@ exports.run = function(message, args) {
   var u = message.mentions;
   if(u[0].id === message.author.id) return message.channel.createMessage(`<@${message.author.id}>, hahaha! Fuck off, actually.`);
 
-  var ca = perms.checkAdmin(message.member);
+  var ca = perms.checkAdmin(message);
   if(ca === false) return message.channel.createMessage(`<@${message.author.id}>, nope, can't use this, bud.`);
 
   var cp = perms.compare(message.member, message.channel.guild.members.get(u[0].id));

@@ -4,42 +4,20 @@ exports.run = function(message, args) {
       color: 0xCD2626,
       fields: [
         {
-          name: '`play`',
-          value: 'Just some Russian Roulette.',
-          inline: true
+          name: '`Core Commands`',
+          value: '`play`, `forceplay`, `stats`, `invite`, `suggest`, `about`'
         },
         {
-          name: '`forceplay`',
-          value: 'Just the `)play` command, just you get to force people to play if you\'re an admin.'
+          name: '`Admin Commands`',
+          value: '`ban`, `kick`, `prefix`'
         },
         {
-          name: '`stats`',
-          value: 'See your statistics from playing Russian Roulette.',
-          inline: true
-        },
-        {
-          name: '`secrets`',
-          value: 'Some stupid "secret" commands.',
-          inline: true
-        },
-        {
-          name: '`suggest`',
-          value: 'Make some suggestions for the bot.',
-          inline: true
-        },
-        {
-          name: '`about`',
-          value: 'Info about the bot.',
-          inline: true
-        },
-        {
-          name: '`invite`',
-          value: 'Invites for the bot and the Discord server.',
-          inline: true
+          name: "`Misc. Commands`",
+          value: '`secrets`, `coin`, `pick`'
         }
       ],
       footer: {
-        text: "To get more \"in depth\" details for commands, do )help [command name]"
+        text: `To get \"in depth\" details for commands, do ${prefixes[message.channel.guild.id]}help [command name]`
       }
     }});
   } else {

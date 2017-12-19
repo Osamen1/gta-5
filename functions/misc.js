@@ -7,7 +7,9 @@ module.exports = {
       { name: "ur mum xd", type: 3  },
       { name: "join shit server: https://discord.me/xdd", type: 1, url: "https://discord.me/xdd" },
       { name: `in ${client.guilds.size} servers | Use )help`},
-      { name: "https://github.com/EdanEA/russian-roulette", type: 1, url: "https://github.com/EdanEA/russian-roulette" }
+      { name: "https://github.com/EdanEA/russian-roulette", type: 1, url: "https://github.com/EdanEA/russian-roulette" },
+      { name: "Look at the shit website: https://edanea.github.io", type:1, url: "https://edanea.github.io" },
+      { name: "eat me out with a bit of mustard", type: 2}
     ];
     var status = statuses[Math.floor(Math.random() * statuses.length)];
     client.editStatus("dnd", status);

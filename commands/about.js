@@ -21,6 +21,10 @@ exports.run = function(message, args) {
         {
           name: "How do I report errors?",
           value: "You could go to the [Github issues page](https://github.com/EdanEA/russian-roulette/issues), or be a ghetto lil' bitch and send them via the `)suggest` command."
+        },
+        {
+          name: "Anything else?",
+          value: "Check out the new [fancy website](https://edanea.github.io), the [GitHub page](https://github.com/EdanEA/russian-roulette), or the [official server](https://discord.me/xdd), I mean -- only if you want to. I don't care :'("
         }
       ],
       footer: {

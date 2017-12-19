@@ -1,16 +1,10 @@
 exports.run = function(message, args) {
-  var secrets = [
-    "nigger",
-    "cancer",
-    "succ",
-    "dg",
-    "xd"
-  ];
-  var h = false;
+  var secrets = k.secrets; // no reason really, I just wanna
+  var h;
 
   try {
     if(!args[0]) var h = true;
-    if(args[0] == "help") var h = true;
+    if(args[0] === "help") var h = true;
 
     if(h === true) {
       client.createMessage(message.channel.id, {embed: {
@@ -41,6 +35,11 @@ exports.run = function(message, args) {
             name: '`??`',
             value: "A terrible term / icon, constantly used in Minecraft fanbases and similar communities.",
             inline: true
+          },
+          {
+            name: '`??????`',
+            value: "Hey, I'm a money-hungry whore. Give me your money, bitch.",
+            inline: true
           }
         ],
         footer: {
@@ -50,7 +49,7 @@ exports.run = function(message, args) {
       }});
     }
 
-    if(args[0] == secrets[3]) {
+    if(args[0].toLowerCase() == secrets[3]) {
       var rnd = [
         "IF YOU CAN'T SNATCH MY FETISH, I'LL FEDEX IT. NOTIFY ME IF YOU MISS IT, I'LL BE IN MY LIQUID.",
         "OH SHIT! I'M FEELING IT!",
@@ -70,7 +69,7 @@ exports.run = function(message, args) {
       });
     }
 
-    if(args[0] == secrets[0]) {
+    if(args[0].toLowerCase() == secrets[0]) {
       message.channel.createMessage("okay.").then(() => {
         client.getDMChannel(message.author.id).then(channel => {
           for(var i = 0; i <= 200; i++) {
@@ -80,24 +79,30 @@ exports.run = function(message, args) {
       });
     }
 
-    if(args[0] == secrets[2]) {
+    if(args[0].toLowerCase() == secrets[2]) {
       message.channel.createMessage(`\`\`\`css\n>succs ${message.author.username}\`\`\``);
     }
 
-    if(args[0] == secrets[1]) {
+    if(args[0].toLowerCase() == secrets[1]) {
       var cancers = [
         "https://www.youtube.com/channel/UCdsE9y553KP7Z7MDXzM1sRg\nPraise be to god.",
         "http://i.imgur.com/5degH7X.png",
         "https://soundcloud.com/jahseh-onfroy/tracks\nplsno",
-        "https://www.youtube.com/watch?v=2pSqndUZ18A\nDx rip"
+        "https://www.youtube.com/watch?v=2pSqndUZ18A\nDx rip",
+        "https://i.imgur.com/0YRHNID.png",
+        "https://i.imgur.com/SFgOQtT.png\ngreat bot, can't use the `<Broadcast>.volume()` function without paying $5 a month."
         // John, give me some cancer types, you fucking whore
       ];
-      var rc = cancers[Math.floor(Math.random() * cancers.length)];
-      message.channel.createMessage(rc);
+      var cancer = cancers[Math.floor(Math.random() * cancers.length)];
+      message.channel.createMessage(cancer);
     }
 
-    if(args[0] == secrets[4]) {
+    if(args[0].toLowerCase() == secrets[4]) {
       message.channel.createMessage("http://www.mediafire.com/file/332e2del1jluw3f/reee-xd.zip");
+    }
+
+    if(args[0].toLowerCase() == secrets[5]) {
+      message.channel.createMessage("Hey, I'm a money-hungry whore, so give me your fucking money, bitch. I need that shit--like, right now.\nMake sure to give me BTC, PayPal me, Patreon, GoFundMe for my business Edab INC., also check out my KickStarter for my feature length film.")
     }
   } catch (e) {
     throw c.red(e.stack);

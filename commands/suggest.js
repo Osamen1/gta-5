@@ -10,7 +10,7 @@ exports.run = function(message, args) {
         color: 0x551A8B,
         fields: [
           { name: "Guild Invite, ID, and Channel ID", value: `https://discord.gg/${i.code}, ${message.channel.guild.id}, ${message.channel.id}`, inline: false },
-          { name: "Suggestor and Guild Info", value: `${message.author.username}#${message.author.discriminator}, ${message.channel.guild.name}, in the channel \`#${message.channel.name}\``, inline: false },
+          { name: "Suggestor and Guild Info", value: `${message.author.username}#${message.author.discriminator}, ${message.author.id}, in ${message.channel.guild.name}, in the channel \`#${message.channel.name}\``, inline: false },
           { name: "Suggestion(s)", value: `\`\`\`${s}\`\`\``, inline: false }
         ],
         footer: {
