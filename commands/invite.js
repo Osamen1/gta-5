@@ -1,3 +1,7 @@
+/**
+* Invite urls for the bot, and its official server.
+*/
+
 exports.run = function(message, args) {
   client.createMessage(message.channel.id, {embed: {
     color: 0x00FFC1,

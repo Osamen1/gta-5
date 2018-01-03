@@ -1,3 +1,8 @@
+/**
+* Lets you change the prefix for your server.
+& @param {string} p The prefix input.
+*/
+
 exports.run = function(message, args) {
   var ca = perms.checkAdmin(message);
   if(ca == false) return message.channel.createMessage("nah, my nigga, you can't use this.");
@@ -9,18 +14,11 @@ exports.run = function(message, args) {
   var gid = message.channel.id;
 
   prefixes[message.channel.guild.id] = p;
-
-  // fs.writeFile('./prefixes.json', JSON.stringify(prefixes), 'utf8', err => {
-  //   if(err) {
-  //     console.log(err);
-  //     message.channel.createMessage(`Uh-oh, something went wrong. Tell the dev, if you want, I guess.\`\`\`${err}\`\`\``);
-  //   }
-    message.channel.createMessage({embed: {
-      color: 0x4682B4,
-      description: `New Prefix in \`${message.channel.guild.name}\``,
-      fields: [{ name: "Prefix:", value: `\`\`\`${p}\`\`\`` }]
-    }});
-  // });
+  message.channel.createMessage({embed: {
+    color: 0x4682B4,
+    description: `New Prefix in \`${message.channel.guild.name}\``,
+    fields: [{ name: "Prefix:", value: `\`\`\`${p}\`\`\`` }]
+  }});
 };
 
 exports.info = {

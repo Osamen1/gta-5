@@ -1,8 +1,8 @@
 module.exports = {
-  randomStatus() {
+  randomStatus(t) {
     var statuses = [
-      { name: "try )secrets", type: 0 },
-      { name: "to your screams", type: 2  },
+      { name: "try )secrets",   type: 0 },
+      { name: "your screams", type: 2 },
       { name: "use )help", type: 0  },
       { name: "ur mum xd", type: 3  },
       { name: "join shit server: https://discord.me/xdd", type: 1, url: "https://discord.me/xdd" },
@@ -11,8 +11,12 @@ module.exports = {
       { name: "Look at the shit website: https://edanea.github.io", type:1, url: "https://edanea.github.io" },
       { name: "eat me out with a bit of mustard", type: 2}
     ];
-    var status = statuses[Math.floor(Math.random() * statuses.length)];
-    client.editStatus("dnd", status);
+
+
+    if(!t) return client.editStatus("dnd",statuses[Math.floor(Math.random() * statuses.length)]);
+    else client.editStatus("dnd", statuses[t]);
+    console.log(statuses[t]);
+    return;
   },
 
   dailyBackup() {

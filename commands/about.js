@@ -1,3 +1,7 @@
+/**
+* Gives a bit of information about the bot and it's developer.
+*/
+
 exports.run = function(message, args) {
   try {
     client.createMessage(message.channel.id, {embed: {
@@ -28,7 +32,7 @@ exports.run = function(message, args) {
         }
       ],
       footer: {
-        text: "xDDD you like my constant shifts from 3rd to 2nd person",
+        text: "lil slut",
         icon_url: "https://i.imgur.com/nzOMYGv.png"
       }
     }});

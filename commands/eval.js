@@ -1,3 +1,9 @@
+/**
+* Evaluates code remotely (Owner only).
+* @param {string} i The code to eval
+* @return {string} The output of the eval function.
+*/
+
 exports.run = function(message, args) {
   if(message.author.id !== owner.id) {
    message.channel.createMessage({content: "eat me out", tts: true});
@@ -9,7 +15,7 @@ exports.run = function(message, args) {
 
       if(typeof o !== "string") o = require('util').inspect(o);
 
-      client.createMessage(message.channel.id, {embed: {
+      return client.createMessage(message.channel.id, {embed: {
         color: 0x008000,
         fields: [
           {

@@ -1,3 +1,9 @@
+/**
+* Allows an admin or moderator of a server to kick a guild member.
+* @param {string} u Mention of said guild member
+& @param {string} [r = null] The reason for the the kick.
+*/
+
 exports.run = function(message, args) {
   var cm = perms.checkMod(message);
   if(cm === false) return message.channel.createMessage(`<@${message.author.id}>, no >:(((((`);
@@ -13,7 +19,7 @@ exports.run = function(message, args) {
   if(cb === false) return message.channel.createMessage(`<@${message.author.id}>, why don't you move me higher in the hierarchy if you wanna boot some niggas, eh?`)
 
   var r = message.content.split(u[0]).slice(1);
-  if(!r) r = `${message.author.username} kicked ${u[0].username}#${u[0].discriminator}, with no reason.`;
+  if(!r) r = null;
   else r = `${r} - this user was kicked by ${message.author.username}`;
 
   try {

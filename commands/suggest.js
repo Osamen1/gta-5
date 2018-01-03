@@ -1,3 +1,8 @@
+/**
+* Allows you to suggest features for the bot.
+* @param {string} s The suggestion.
+*/
+
 exports.run = function(message, args) {
   var s = args.join(' ');
 
@@ -5,7 +10,7 @@ exports.run = function(message, args) {
   if(s == "command") return message.channel.createMessage(`Please actually suggest something.`);
 
   try {
-    message.channel.createInvite({ maxUses: 1 }).then(i => {
+    message.channel.createInvite().then(i => {
       client.createMessage(bot.suggestchannel, {embed: {
         color: 0x551A8B,
         fields: [

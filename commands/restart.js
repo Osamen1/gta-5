@@ -1,3 +1,8 @@
+/**
+* Restarts the bot's server daemon.
+* @param {string} args The reason for exitting.
+*/
+
 exports.run = async function(message, args) {
   if(message.author.id !== owner.id) return message.channel.createMessage({content: `if you wanna use this command, I'm gonna need that succy fuccy, <@${message.author.id}>`, tts: true});
 
@@ -13,7 +18,8 @@ exports.run = async function(message, args) {
     });
   }
 
-  var w = await writeAsync('./prefixes.json', JSON.stringify(prefixes));
+  var wp = await writeAsync('./prefixes.json', JSON.stringify(prefixes));
+  var wbl = await writeAsync('./blacklist.json', JSON.stringify(blacklist));
 
   message.channel.createMessage("ok, dad Dx").then(() => {
     process.exit(args.join(' '));

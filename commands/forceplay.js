@@ -1,3 +1,8 @@
+/**
+* Allows an admin to force a guild member to play Russian roulette.
+* @param {string} u Mention of said guild member
+*/
+
 exports.run = function(message, args) {
   var u = message.mentions;
   if(u[0].id === message.author.id) return message.channel.createMessage(`<@${message.author.id}>, hahaha! Fuck off, actually.`);

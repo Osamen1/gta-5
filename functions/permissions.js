@@ -27,5 +27,10 @@ module.exports = {
     } catch(e) {
       throw e;
     }
+  },
+
+  checkBotAdmin(message) {
+    if(!message.channel.memberHasPermission(client.user.id, "Administrator") && !message.channel.memberHasPermission(client.user.id, "banMembers")) return false;
+    else return true;
   }
 };

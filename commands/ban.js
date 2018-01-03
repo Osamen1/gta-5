@@ -1,3 +1,10 @@
+
+/**
+* Allows an admin to ban a guild member.
+* @param {string} u The mention of a guild member.
+* @param {string} [r = undefined] The reason for the ban.
+*/
+
 exports.run = function(message, args) {
   var ca = perms.checkAdmin(message);
   if(ca === false) return message.channel.createMessage(`<@${message.author.id}>, eat me out, cuck boi`)
@@ -13,7 +20,7 @@ exports.run = function(message, args) {
   if(cb === false) return message.channel.createMessage(`<@${message.author.id}>, why don't you move me higher in the hierarchy if you wanna ban some niggas, eh?`)
 
   var r = message.content.split(u[0]).slice(1);
-  if(!r) r = `This user was banned by ${message.author.username}; no reason was given for the ban.`;
+  if(!r) var r;
   else r = `${r} - this user was banned by ${message.author.username}`;
 
   try {

@@ -1,3 +1,8 @@
+/**
+* Gives information on the bot's commands.
+* @param {string} [args = null] The name of a command, for more info on that specific command.
+*/
+
 exports.run = function(message, args) {
   if(!args[0]) {
     client.createMessage(message.channel.id, {embed: {
@@ -5,7 +10,7 @@ exports.run = function(message, args) {
       fields: [
         {
           name: '`Core Commands`',
-          value: '`play`, `forceplay`, `stats`, `invite`, `suggest`, `about`'
+          value: '`play`, `forceplay`, `stats`'
         },
         {
           name: '`Admin Commands`',
@@ -13,7 +18,7 @@ exports.run = function(message, args) {
         },
         {
           name: "`Misc. Commands`",
-          value: '`secrets`, `coin`, `pick`'
+          value: '`secrets`, `coin`, `pick`, `invite`, `suggest`, `about`'
         }
       ],
       footer: {

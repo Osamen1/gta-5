@@ -1,3 +1,8 @@
+/**
+* The base play - Russian Roulette's shitty Russian Roulette simulator.
+* @param {number} [a = 1] The amount of "bullets" to be used whilst playing.
+*/
+
 const sql = require('sqlite');
 sql.open('./stats.sqlite');
 sql.run('CREATE TABLE IF NOT EXISTS players (playerID, wins, loses, plays, playerName, playerDiscriminator)');
@@ -7,86 +12,131 @@ exports.run = function(message, args) {
   var cid = message.channel.id;
   var gid = message.channel.guild.id;
 
+  var a = parseInt(args[0]);
+
+  var reasons = [ "Damn, bro, their brains splattered everywhere. It was fuckin' crazy; should've been there.", `Lol, ${message.author.username}'s so shit. They lost to a %16 percent chance of dying. Literal garbage.`, "I WAS CONCEIVED BY MY DISEASE", "D:" ];
+  var reason = reasons[Math.floor(Math.random() * reasons.length)];
+
+  var delays = [ 150000, 180000, 60000, 30000, 300000 ];
+  var delay = delays[Math.floor(Math.random() * delays.length)];
+
+  var rrs = [ "Damn, bro, you beat the 16% chance that you'd get beaned (that is if the owners of the server set my role high enough)", "Yeet, you get to survive, my guy.", "Fucking hell! This isn't fair. >:(((\nYou should go again...", "John's a nigger, lol. Btw you didn't lose." ];
+  var rr = rrs[Math.floor(Math.random() * rrs.length)];
+
+  var bm = message.channel.guild.members.get(bot.id);
+  var pm = message.member;
+  var bc = perms.checkBotAdmin(message);
+  var rc = perms.compare(bm, pm);
+
+  if(!a) var a = 1;
+
+  function checkBP(bullets) {
+    if(bullets.length === 1) return;
+
+    for(var i = 0; i <= bullets.length; i++) {
+      if(bullets[i] === bullets[0]) {
+        while(bullets[bullet] === bullets[0]) {
+          bullets[i] = Math.floor(Math.random() * 5);
+
+          if(bullets[i] === bullets[0]) continue;
+          else break;
+        }
+      }
+    }
+
+    return bullets;
+  }
+
   try {
-    sql.get(`SELECT * FROM players WHERE playerID = '${id}'`).then(r => {
-      var b = Math.floor(Math.random() * 5);
-      var p = Math.floor(Math.random() * 5);
+    const p = Math.floor(Math.random() * 5);
+    switch(a) {
+      case 1:
+        var b0 = Math.floor(Math.random() * 5);
+        var b = [b0];
+        break;
+      case 2:
+        var b0 = Math.floor(Math.random() * 5), b1 = Math.floor(Math.random() * 5);
+        var b = [b0, b1];
+        break;
+      case 3:
+        var b0 = Math.floor(Math.random() * 5), b1 = Math.floor(Math.random() * 5), b2 = Math.floor(Math.random() * 5);
+        var b = [b0, b1, b2];
+        break;
+      case 4:
+        var b0 = Math.floor(Math.random() * 5), b1 = Math.floor(Math.random() * 5), b2 = Math.floor(Math.random() * 5), b3 = Math.floor(Math.random() * 5);
+        var b = [b0, b1, b2, b3]
+        break;
+      case 5:
+        var b0 = Math.floor(Math.random() * 5), b1 = Math.floor(Math.random() * 5), b2 = Math.floor(Math.random() * 5), b3 = Math.floor(Math.random() * 5), b4 = Math.floor(Math.random() * 5);
+        var b = [b0, b1, b2, b3, b4];
+        break;
+      default:
+        if(a > 5)
+          return mesage.channel.createMessage(`<@${id}>, damn, bro, that's too high, man. You don't wanna fucking die, do you?`);
+        else
+          return message.channel.createMessage(`<@${id}>, you can't put less than one bullet, pussy-boi.`);
+    }
 
-      var reasons = [ "Damn, bro, their brains splattered everywhere. It was fuckin' crazy; should've been there.", `Lol, ${message.author.username}'s so shit. They lost to a %16 percent chance of dying. Literal garbage.`, "I WAS CONCEIVED BY MY DISEASE", "D:" ];
-      var reason = reasons[Math.floor(Math.random() * reasons.length)];
+    checkBP(b);
 
-      var delays = [ 150000, 180000, 60000, 30000, 300000 ];
-      var delay = delays[Math.floor(Math.random() * delays.length)];
+    for(var bullet in b) {
+      if(b[bullet] === p) {
+        var b = b[bullet];
+        break;
+      }
+    }
 
-      var rrs = [ "Damn, bro, you beat the 16% chance that you'd get beaned (that is if the owners of the server set my role high enough)", "Yeet, you get to survive, my guy.", "Fucking hell! This isn't fair. >:(((\nYou should go again...", "John's a nigger, lol. Btw you didn't lose." ];
-      var rr = rrs[Math.floor(Math.random() * rrs.length)];
-
-      var bm = message.channel.guild.members.get(bot.id);
-      var pm = message.member;
-      var bc = perms.checkAdmin(message);
-      var rc = perms.compare(bm, pm);
-
-      if(b == p) {
-        client.getDMChannel(id).then(channel => {
-          message.channel.createMessage("*bang*").then(m => {
-            try {
-              if(!r) sql.run(`INSERT INTO players (playerID, wins, loses, plays, playerName, playerDiscriminator) VALUES (?, ?, ?, ?, ?, ?)`, [id, 0, 1, 1, message.author.id, message.author.discriminator]);
-              else sql.run(`UPDATE players SET plays = ${r.plays++}, loses = ${r.loses++} WHERE playerID = '${message.author.id}'`);
-            } catch(e) {
-              throw e;
-            }
-
-            try {
-              if(rc === false || bc === false) {
-                setTimeout(() => {
-                  m.edit("Damn, you totally lost, but I can't ban you. Just pretend it was blanks, I guess.");
-                  return;
-                }, 3500);
-              }
-              setTimeout(() => {
-                message.channel.guild.banMember(id, 0, reason).then(() => {
-                  m.edit(`May ${message.author.username} rest in peace.`);
-                  setTimeout(() => {
-                    client.unbanGuildMember(gid, id, "xD");
-                    client.createChannelInvite(cid, {maxAge: 5400, maxUses: 1}).then(invite => {
-                      console.log(id);
-                      channel.createMessage({content: `You were unbanned, I guess. https://discord.gg/${invite.code}`});
-					  return;
-                    });
-                  }, 1500);
-                });
-              }, 3500);
-            } catch (e) {
-	             setTimeout(() => {
-                 m.edit("Damn, you totally lost, but I can't ban you. Just pretend it was blanks, I guess.");
-                 throw c.red(e.stack);
-               }, 3500);
-             }
-           });
-         });
+    if(b === p) {
+      if(bc == false || rc == false) {
+        message.channel.createMessage("Whoops! You totally lost, but I can't ban you. Just pretend it was blanks, I guess.");
+        sql.get(`SELECT * FROM players WHERE playerID = '${id}'`).then(r => {
+          if(!r) sql.run(`UPDATE players SET plays = 1, loses = 1 WHERE playerID = '${id}'`);
+          else sql.run(`UPDATE players SET plays = ${r.plays++}, loses = ${r.loses++} WHERE playerID = '${id}'`);
+          return;
+        });
       } else {
-        message.channel.createMessage("*click*").then(m => {
-          try {
-            if(!r) sql.run(`INSERT INTO players (playerID, wins, loses, plays, playerName, playerDiscriminator) VALUES (?, ?, ?, ?, ?, ?)`, [id, 1, 0, 1, message.author.id, message.author.discriminator]);
-            else sql.run(`UPDATE players SET plays = ${r.plays++}, wins = ${r.loses++} WHERE playerID = '${message.author.id}'`);
-          } catch (e) {
-            throw e;
-          }
-
+        message.channel.createMessage("*bang*").then(m => {
           setTimeout(() => {
-            return m.edit(rr);
+            m.edit(`May God leave ${message.author.username}'s soul at peace.`);
+            sql.get(`SELECT * FROM players WHERE playerID = '${id}'`).then(r => {
+              if(!r) sql.run(`UPDATE players SET plays = 1, loses = 1 WHERE playerID = '${id}'`);
+              else sql.run(`UPDATE players SET plays = ${r.plays++}, loses = ${r.loses++} WHERE playerID = '${id}'`);
+            });
+
+            client.banGuildMember(gid, id, 0, reason).then(() => {
+              setTimeout(() => {
+                client.unbanGuildMember(gid, id);
+                message.channel.createInvite().then(invite => {
+                  client.getDMChannel(id).then((channel) => {
+                    channel.createMessage(`You were unbanned, I guess. https://discord.gg/${invite.code}`);
+                    return;
+                  });
+                });
+              }, delay);
+            });
           }, 3500);
         });
       }
-    });
+    } else {
+      message.channel.createMessage("*click*").then(m => {
+        sql.get(`SELECT * FROM players WHERE playerID = '${id}'`).then(r => {
+          if(!r) sql.run(`UPDATE players SET plays = 1, loses = 1 WHERE playerID = '${id}'`);
+          else sql.run(`UPDATE players SET plays = ${r.plays++}, loses = ${r.loses++} WHERE playerID = '${id}'`);
+        });
+
+        setTimeout(() => {
+          m.edit(rr);
+        }, 3500);
+      });
+    }
   } catch (e) {
-    throw c.red(e.stack);
-    message.channel.send(`Uh-oh, ran into a problem there.\`\`\`${e}\`\`\``);
+    throw e;
+    message.channel.createMessage(`Uh-oh, something went wrong there.\`\`\`${e}\`\`\``);
   }
 };
 
 exports.info = {
-  usage: ")play",
-  args: "[none]",
+  usage: ")play [args]",
+  args: "[number or none]",
   description: "Feeling suicidal? Just want a bit of thrill? Then play some Russian roulette."
 };

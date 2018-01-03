@@ -1,7 +1,6 @@
 /*
   Stolen from this guy, 'cause I'm retarded: https://github.com/TTtie
 */
-
 Object.defineProperty(Eris.Guild.prototype, "defaultChannel", {
     get: function () {
         if (this.channels.filter((c) => c.type == 0).length == 0) return null;

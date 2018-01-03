@@ -1,12 +1,16 @@
+/**
+* Shitty "secret" commands that didn't fit the bot's shit.
+* @param {string} [args = "help"] The name of the supposed secret command.
+*/
+
 exports.run = function(message, args) {
   var secrets = k.secrets; // no reason really, I just wanna
   var h;
 
   try {
-    if(!args[0]) var h = true;
-    if(args[0] === "help") var h = true;
+    if(!args[0]) args[0] = "help"
 
-    if(h === true) {
+    if(args[0] === "help") {
       client.createMessage(message.channel.id, {embed: {
         color: 0xFFFF00,
         description: "Just some secret commands. If you think you know a secret check with this `)secrets [answer]`.",
