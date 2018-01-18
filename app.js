@@ -108,5 +108,5 @@ client.on("messageCreate", (message) => {
 setInterval(misc.randomStatus, 1800000);
 setInterval(misc.dailyBackup, 86400000);
 
-client.connect();
+client.login(process.env.BOT_TOKEN);
 // rip my guy stringer
