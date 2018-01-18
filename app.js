@@ -13,19 +13,34 @@ global.perms = require('./functions/permissions.js');
 global.misc = require('./functions/misc.js');
 global.prefixes = require('./prefixes.json');
 global.blacklist = require('./blacklist.json');
-require('./guild.js');
 
-global.admins = { "josh":"117728104935456770", "hunter":"228963688910946304", "john":"148958241378926593" };
-global.owner = { "id":"221740788462256138" };
-global.bot = {"id": "305602159741763585", "logs":"382001924251320322", "suggestchannel":"382001960984772609", "testingserver":"312667247808217088", "officialserver":"380310916341956610", "prefix":"("};
-  
-  try {
-    require(`./commands/${cmd}`).run(message, args);
-  } catch (e) {
-    if(e.message.includes('Cannot find module') || e.message.includes('ENOENT')) return;
-    console.log(c.red(e.stack));
+//----------------------------------------------
+var token = ""
+var prefix = ""
+var discordbotsorgtoken = ""
+var discordpwtoken = ""
+//----------------------------------------------
 
-    if(e.length > 1990) return;
-    message.channel.createMessage(`\`\`\`${e}\`\`\``);
-  }
-}
+client.on("ready", () => {
+    client.user.setPresence({game: {name: "JBZD Nsfw Bot", type: 0}});
+    console.log("I am ready!");
+});
+
+client.on("message", message => {
+    if (message.author.bot) return;
+    if (message.content.indexOf(prefix) !== 0) return;
+    if (message.channel.type === "dm") return;
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+   
+    try {
+        let commandFile = require(`./commands/${command}.js`);
+        commandFile.run(client, message, args);
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+// THIS  MUST  BE  THIS  WAY
+client.login(process.env.BOT_TOKEN);
