@@ -7,7 +7,6 @@ global.moment = require('moment');
 global.snek = require('snekfetch');
 require('moment-duration-format');
 
-global.k = require('./secretspoops.json');
 global.perms = require('./functions/permissions.js');
 global.misc = require('./functions/misc.js');
 global.prefixes = require('./prefixes.json');
