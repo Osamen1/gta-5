@@ -1,4 +1,4 @@
-const client = new Client();
+
 global.Eris = require('eris');
 require("eris-additions")(Eris, { disabled: ["Channel.sendMessage", "Channel.sendCode", "Eris.Embed"] })
 global.sql = require('sqlite');
@@ -8,6 +8,7 @@ global.moment = require('moment');
 global.snek = require('snekfetch');
 require('moment-duration-format');
 
+global.k = require('./secretspoops.json');
 global.perms = require('./functions/permissions.js');
 global.misc = require('./functions/misc.js');
 global.prefixes = require('./prefixes.json');
@@ -106,6 +107,4 @@ client.on("messageCreate", (message) => {
 
 setInterval(misc.randomStatus, 1800000);
 setInterval(misc.dailyBackup, 86400000);
-
-client.login(process.env.BOT_TOKEN);
 // rip my guy stringer
