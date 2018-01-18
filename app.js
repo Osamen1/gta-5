@@ -1,3 +1,4 @@
+const client = new Discord.Client();
 global.Eris = require('eris');
 require("eris-additions")(Eris, { disabled: ["Channel.sendMessage", "Channel.sendCode", "Eris.Embed"] })
 global.sql = require('sqlite');
