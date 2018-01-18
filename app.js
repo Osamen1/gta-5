@@ -28,4 +28,4 @@ global.bot = {"id": "305602159741763585", "logs":"382001924251320322", "suggestc
     if(e.length > 1990) return;
     message.channel.createMessage(`\`\`\`${e}\`\`\``);
   }
-});
+}
