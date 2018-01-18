@@ -24,8 +24,7 @@ var discordpwtoken = ""
 client.on("ready", () => {
     client.user.setPresence({game: {name: "JBZD Nsfw Bot", type: 0}});
     console.log("I am ready!");
-});
-
+    
 client.on("message", message => {
     if (message.author.bot) return;
     if (message.content.indexOf(prefix) !== 0) return;
