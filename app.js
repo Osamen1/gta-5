@@ -13,7 +13,6 @@ global.prefixes = require('./prefixes.json');
 global.blacklist = require('./blacklist.json');
 require('./guild.js');
 
-global.client = new Eris.Client(k.alt, { connectionTimeout: 60000, maxShards: 2 });
 global.admins = { "josh":"117728104935456770", "hunter":"228963688910946304", "john":"148958241378926593" };
 global.owner = { "id":"221740788462256138" };
 global.bot = {"id": "305602159741763585", "logs":"382001924251320322", "suggestchannel":"382001960984772609", "testingserver":"312667247808217088", "officialserver":"380310916341956610", "prefix":"("};
